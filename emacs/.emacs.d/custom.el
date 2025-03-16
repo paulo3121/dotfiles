@@ -9,7 +9,7 @@
  '(display-line-numbers-type 'relative)
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(rainbow-mode projectile cider whitespace-cleanup-mode typescript-mode rjsx-mode eglot haskell-mode emmet-mode rg google-translate helm helm-lsp which-key lsp-ui flycheck lsp-java lsp-mode flymake-eslint eslintd-fix json-mode go-translate nov paredit-mode paredit clojure-mode-extra-font-locking pyvenv org go-mode magit company lsp-pyright use-package pyvenv-auto elpy move-text gruber-darker-theme)))
+   '(elixir-mode rainbow-mode projectile cider whitespace-cleanup-mode typescript-mode rjsx-mode eglot haskell-mode emmet-mode rg google-translate helm helm-lsp which-key lsp-ui flycheck lsp-java lsp-mode flymake-eslint eslintd-fix json-mode go-translate nov paredit-mode paredit clojure-mode-extra-font-locking pyvenv org go-mode magit company lsp-pyright use-package pyvenv-auto elpy move-text gruber-darker-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
