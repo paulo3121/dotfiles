@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ "$#" -ne 2 ]; then
+    echo "Uso: $0 <arquivo_de_video> <arquivo_de_audio_saida>"
+    exit 1
+fi
+
+video_input="$1"
+audio_output="$2"
+
+ffmpeg -i "$video_input" -q:a 0 -map a "$audio_output"
+
+if [ $? -eq 0 ]; then
+    echo "Áudio extraído com sucesso para $audio_output"
+else
+    echo "Erro ao extrair o áudio."
+    exit 1
+fi

@@ -1,0 +1,112 @@
+ffmpeg -y -hwaccel nvdec -i raw_contab.mkv -vf "scale=1920:1080" -c:v hevc_nvenc -preset slow -b:v 2500k -maxrate 3500k -bufsize 7000k -c:a copy "comp.mkv"
+
+ffmpeg -f x11grab -s 3840x2160 -i :1 -c:v hevc_nvenc -preset slow teste.mkv
+ffmpeg -f x11grab -video_size 1920x1080 -framerate 30 -i :0.0 -c:v hevc_nvenc -preset fast -b:v 5M -f mp4 output.mp4
+ffmpeg -f x11grab -s 3840x2160 -i :1 -vf "scale=1920:1080,fps=30" -c:v hevc_nvenc -preset slow -crf 28 -b:v 0 -f matroska output.mkv
+ffmpeg -f x11grab -s 3840x2160 -i :1 -vf "fps=30" -c:v hevc_nvenc -preset slow -crf 28 -b:v 0 -f matroska output.mkv
+
+ffmpeg -f x11grab -s 3840x2160 -i :1 -c:v hevc_nvenc -preset slow teste.mkv
+
+
+
+
+
+ffmpeg -f x11grab -video_size 3840x2160 -framerate 30 -i :1 -c:v hevc_nvenc -preset slow -crf 28 -b:v 0 -f matroska teste.mkv
+ffmpeg -f x11grab -video_size 3840x2160 -framerate 30 -i :1 -c:v hevc_nvenc -preset slow -qp 0 -f matroska teste.mkv
+
+ffmpeg -f pulse -i default -f x11grab -i :1 -c:v hevc_nvenc -c:a aac -preset fast -b:a 192k output.mkv
+
+
+ffmpeg \
+    -f pulse -i alsa_output.pci-0000_00_1f.3.analog-stereo.monitor \
+    -f pulse -i default \
+    -f x11grab -video_size 3840x2160 -framerate 30 -i :1 \
+    -filter_complex "[0:a][1:a]amerge=inputs=2[aout]" \
+    -c:v hevc_nvenc -preset fast \
+    -c:a aac -b:a 192k \
+    -map 2:v -map "[aout]" \
+    -f matroska output.mkv
+
+
+
+ffmpeg -f pulse -i default audio.wav
+
+ffmpeg -f pulse -i alsa_output.pci-0000_00_1f.3.analog-stereo.monitor -f pulse -i default -filter_complex "[0:a][1:a]amerge=inputs=2[aout]" -map 0:v -map "[aout]" -f x11grab -video_size 3840x2160 -framerate 30 -i :1 -c:v hevc_nvenc -preset fast -c:a aac -b:a 192k -f matroska output.mkv
+
+alsa_output.pci-0000_00_1f.3.analog-stereo.monitor
+alsa_output.usb-C-Media_Electronics_Inc._USB_PnP_Sound_Device-00.analog-stereo.monitor
+
+ffmpeg -f pulse -i default -f x11grab -video_size 3840x2160 -framerate 30 -i :1 -c:v hevc_nvenc -preset fast -c:a aac -b:a 192k -f matroska output.mkv
+
+irei criar um processo de gravação de tela no linux pelo ffmpeg. ele terá algumas etapas.
+- Gravação da tela: Usará henc;
+- Gravação de audio;
+- Tratamento do vídeo: Usara as melhores configuracoes para que o video ja gravado fique com o menor tamanho possivel, sem sacrificar muita qualidade;
+- Junção do vídeo e audio.
+Faça um prompt que explique bem isso para que eu posso pedir ajuda para uma ia no desenvolvimento desse processo
+
+
+FUNCIONANDO BEM:
+
+01:
+ffmpeg \
+    -f pulse -i alsa_output.usb-C-Media_Electronics_Inc._USB_PnP_Sound_Device-00.analog-stereo.monitor \
+    -f pulse -i default \
+    -f x11grab -video_size 3840x2160 -framerate 30 -i :1 \
+    -filter_complex "[0:a][1:a]amerge=inputs=2[aout]" \
+    -c:v hevc_nvenc -preset slow \
+    -c:a aac -b:a 192k \
+    -map 2:v -map "[aout]" \
+    -f matroska output.mkv
+
+# olhar inconsistencias do log que aparece enquanto gravo
+# script que grava a tela
+# script que extrai audio de video (para conversas em que o video nao é importante)
+
+# script que trata video para ficar menor
+# Adicionar filtros de audio
+# especificar o audio certo independente da casa. criar um script para cada casa? ter prompt perguntando? tem um canal que serve para as duas?
+
+video OK
+audio OK
+mas usa muita cpu
+ffmpeg -f x11grab -s 3840x2160 -i :1 -f alsa -i hw:0,0 -filter:a "volume=2.0,afftdn=nf=-50" output.mkv
+
+
+video OK
+audio no. Acho que esta desincronizado ou nao esta sendo gravado por conta da gravacao pela gpu
+ffmpeg -f x11grab -s 3840x2160 -i :1 -f alsa -i hw:0,0 -c:v h264_nvenc -preset slow -filter:a "volume=2.0,afftdn=nf=-50" output.mkv
+
+corrigir audio e grav pela gpu
+
+casa mae:
+
+ffmpeg -f x11grab -s 3840x2160 -i :1 -f alsa -i hw:0,0 -filter:a "volume=2.0,afftdn=nf=-50" output.mkv
+-- cpu
+
+ffmpeg -f x11grab -s 3840x2160 -i :1 -f alsa -i hw:0,0 -c:v h264_nvenc -preset slow -filter:a "volume=2.0,afftdn=nf=-50" output.mkv
+--gpu
+
+pai:
+ffmpeg -f x11grab -s 3840x2160 -i :1 -f pulse -i default -filter:a "volume=2.0,afftdn=nf=-50" output.mkv
+
+ffmpeg -f x11grab -s 3840x2160 -i :1 -f pulse -i default -c:v h264_nvenc -preset slow -filter:a "volume=2.0,afftdn=nf=-50" output.mkv
+
+
+
+quando for configurar:
+
+audio:
+arecord -l
+Cada dispositivo será listado com um identificador no formato hw:CARD,DEVICE (por exemplo, hw:1,0).
+
+
+sand:
+ffmpeg -f pulse -i default -filter:a "volume=2.0,afftdn=nf=-50" output.wav
+
+ffmpeg -f x11grab -s 3840x2160 -i :1 \
+-f pulse -i default -f pulse -i alsa_output.usb-C-Media_Electronics_Inc._USB_PnP_Sound_Device-00.analog-stereo.monitor \
+-filter_complex "[1:a][2:a]amerge=inputs=2[aout]" \
+-c:v h264_nvenc -preset slow \
+-c:a aac -b:a 192k -map 0:v -map "[aout]" \
+-filter:a "volume=2.0,afftdn=nf=-50" output.mkv

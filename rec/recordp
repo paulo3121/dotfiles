@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+echo "..." > /tmp/i3status_recording
+
+ffmpeg \
+    -f pulse -i alsa_output.usb-C-Media_Electronics_Inc._USB_PnP_Sound_Device-00.analog-stereo.monitor \
+    -f pulse -i default \
+    -f x11grab -video_size 3840x2160 -framerate 30 -i :1 \
+    -filter_complex "[0:a][1:a]amerge=inputs=2[aout]" \
+    -c:v hevc_nvenc -preset slow \
+    -c:a aac -b:a 192k \
+    -map 2:v -map "[aout]" \
+    -f matroska "$HOME/rec/raws/raw_$(date '+%y%m%d_%H%M%S').mkv"
+
+
+echo "." > /tmp/i3status_recording

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+echo "..." > /tmp/i3status_recording
+
+ffmpeg \
+    -f pulse -i alsa_output.pci-0000_00_1f.3.analog-stereo.monitor \
+    -f pulse -i default \
+    -f x11grab -video_size 3840x2160 -framerate 30 -i :1 \
+    -filter_complex "[1:a]aformat=sample_fmts=fltp:channel_layouts=stereo,volume=2.0,afftdn=nf=-45[audmic]; \
+                     [0:a]aformat=sample_fmts=fltp:channel_layouts=stereo[sysaudio]; \
+                     [sysaudio][audmic]amerge=inputs=2[aout]" \
+    -c:v hevc_nvenc -preset slow \
+    -c:a aac -b:a 192k \
+    -map 2:v -map "[aout]" \
+    -f matroska "$HOME/rec/raws/raw_$(date '+%y%m%d_%H%M%S').mkv"
+
+
+echo "." > /tmp/i3status_recording
