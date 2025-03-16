@@ -1,9 +1,14 @@
 !
 
-stow i3
+stow asdf
+stow bash
 stow deadbeef
+stow emacs
+stow i3
+stow ssh
 stow urxvt
+stow xorg
 
-# foliate
 # dbeaver-ce
+# foliate
 # intellij-idea-community
