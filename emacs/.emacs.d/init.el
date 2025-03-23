@@ -6,7 +6,7 @@
 
 ;;; Code:
 
-(setq custom-file "~/dotfiles/emacs/.emacs.d/custom.el")
+(setq custom-file "~/.emacs.d/custom.el")
 (load-file custom-file)
 
 (tool-bar-mode 0)
@@ -18,6 +18,7 @@
 (add-hook 'window-setup-hook 'toggle-frame-maximized t); Tela cheia startup
 (delete-selection-mode 1); replace highlighted text with what I type
 
+;; (add-to-list 'default-frame-alist '(font . "monospace-14"))
 (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-14"))
 
 (setq ido-enable-flex-matching t)
@@ -38,6 +39,9 @@
 ;; (use-package whitespace
 ;;   :hook (before-save . whitespace-cleanup))
 
+(use-package iedit
+  :ensure t)
+
 (use-package rg)
 
 (use-package move-text
@@ -46,7 +50,13 @@
 (use-package eldoc
   :custom (eldoc-echo-area-use-multiline-p t))
 
-(use-package magit)
+(use-package magit
+  :ensure t)
+
+(use-package magit-todos
+  :ensure t
+  :after magit
+  :config (magit-todos-mode 1))
 
 (use-package company
   :config (add-hook 'after-init-hook 'global-company-mode))
@@ -84,6 +94,7 @@
     (make-directory auto-save-dir t)))
 
 (use-package eglot
+  :ensure t
   :hook (( python-mode clojure-mode typescript-mode rjsx-mode
 	   go-mode haskell-mode elixir-mode)
 	 . eglot-ensure)
@@ -119,10 +130,12 @@
 ;;		      nil t))))
 
 (use-package clojure-mode
+  :ensure t
   :hook
   (clojure-mode . paredit-mode))
 
 (use-package cider ;C-c C-d d shows func cursor docs
+  :ensure t
   :after clojure-mode
   :hook (((cider-repl-mode cider-mode) . eldoc-mode)
 	 (cider-popup-buffer-mode . cider-disable-linting)))
