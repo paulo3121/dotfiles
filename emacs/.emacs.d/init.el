@@ -3,7 +3,7 @@
 ;; Author: Paulo
 ;; Keywords: Emacs configuration
 ;; Homepage:
-
+;
 ;;; Code:
 
 (setq custom-file "~/.emacs.d/custom.el")
