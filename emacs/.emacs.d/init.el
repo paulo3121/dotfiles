@@ -36,18 +36,28 @@
 (use-package gruber-darker-theme
   :ensure t)
 
+(use-package circadian
+  :ensure t
+  :config
+  (setq circadian-themes '(("6:00" . tsdh-light)
+                           ("18:30" . gruber-darker)))
+  (circadian-setup))
+
 ;; (use-package whitespace
 ;;   :hook (before-save . whitespace-cleanup))
 
 (use-package iedit
   :ensure t)
 
-(use-package rg)
+(use-package rg
+  :ensure t)
 
 (use-package move-text
+  :ensure t
   :config (move-text-default-bindings))
 
 (use-package eldoc
+  :ensure t
   :custom (eldoc-echo-area-use-multiline-p t))
 
 (use-package magit
@@ -59,6 +69,7 @@
   :config (magit-todos-mode 1))
 
 (use-package company
+  :ensure t
   :config (add-hook 'after-init-hook 'global-company-mode))
 
 (use-package projectile
@@ -158,9 +169,11 @@
       )))
 
 
-(use-package emmet-mode)
+(use-package emmet-mode
+  :ensure t)
 
 (use-package rjsx-mode
+  :ensure t
   :mode ("\\.js\\'" . rjsx-mode)
   :config
   (add-hook 'after-save-hook 'run-eslint-on-file-in-project)
@@ -172,6 +185,7 @@
   (js-switch-indent-offset 2))
 
 (use-package typescript-mode
+  :ensure t
   :config
   (add-hook 'after-save-hook 'run-eslint-on-file-in-project)
   :hook
@@ -181,7 +195,8 @@
   :hook (haskell-mode . interactive-haskell-mode))
 
 (use-package elixir-mode
-  :ensure t)
+  :ensure t
+  :hook (before-save . eglot-format))
 
 (use-package html-mode
   :hook (html-mode . emmet-mode))
