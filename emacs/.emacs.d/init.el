@@ -40,7 +40,7 @@
   :ensure t
   :config
   (setq circadian-themes '(("6:00" . tsdh-light)
-                           ("18:30" . gruber-darker)))
+                           ("18:00" . gruber-darker)))
   (circadian-setup))
 
 ;; (use-package whitespace
@@ -196,7 +196,8 @@
 
 (use-package elixir-mode
   :ensure t
-  :hook (before-save . eglot-format))
+  :hook (before-save . eglot-format)
+  (elixir-mode . emmet-mode))
 
 (use-package html-mode
   :hook (html-mode . emmet-mode))
