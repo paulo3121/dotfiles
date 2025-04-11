@@ -24,7 +24,7 @@
     "menubar": true
   },
   "ui.feedback.scale": true,
-  "ui.feedback.last_pos": true,
+  "ui.feedback.last_pos": false,
   "ui.toolbar_items": {
     "toolbar1_file": true,
     "toolbar1_scrap": false,
@@ -39,7 +39,7 @@
   "ui.dark_theme_variant": true,
   "ui.rendered_tile_cache_size": 16384,
   "saving.default_format": "openraster",
-  "brushmanager.selected_brush": "classic/kabura",
+  "brushmanager.selected_brush": "classic/pen",
   "brushmanager.selected_groups": [],
   "frame.color_rgba": [
     0.12,
@@ -76,9 +76,9 @@
     },
     "floating": [],
     "position": {
-      "x": 0,
-      "y": 32,
-      "w": 3834,
+      "x": 1920,
+      "y": 0,
+      "w": 1914,
       "h": 2087
     },
     "autohide": false,
@@ -118,9 +118,13 @@
     "USB HID USB APP Consumer Control:mouse:4": {},
     "USB HID USB APP Mouse:mouse:4": {},
     "XCTECH USB Gaming Mouse:mouse:4": {},
-    "XCTECH USB Gaming Mouse Keyboard:mouse:4": {}
+    "XCTECH USB Gaming Mouse Keyboard:mouse:4": {},
+    "Compx 2.4G Dual Mode Mouse Keyboard:mouse:4": {},
+    "Compx 2.4G Dual Mode Mouse:mouse:4": {},
+    "GAOMON Gaomon Tablet Pad:tablet-pad:7": {},
+    "GAOMON Gaomon Tablet Pen Pen (0):pen:5": {}
   },
-  "colors.current": "#262626",
+  "colors.current": "#ffdd32",
   "colors.palette": {
     "name": "MyPaint Default",
     "columns": 7,
@@ -440,19 +444,20 @@
   "ui.file_compat_warning_mild": true,
   "ui.file_compat_warning_severe": true,
   "colors.history": [
-    "#fc3c02",
-    "#fc3c02",
-    "#00ff00",
-    "#000000",
-    "#262626"
+    "#ffdd31",
+    "#72c936",
+    "#ffdd31",
+    "#ffdd31",
+    "#ffdd32"
   ],
   "brush_chooser.default.window_size": [
     256,
     306
   ],
   "color_chooser.default.window_size": [
-    256,
-    264
+    288,
+    323
   ],
-  "color_chooser.default.selected_adjuster": "PaletteTool"
+  "color_chooser.default.selected_adjuster": "RingsColorChangerTool",
+  "brush_chooser.default.selected_group": "Classic"
 }
