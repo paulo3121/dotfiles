@@ -1,5 +1,7 @@
 !
 
+sudo apt install emacs mypaint spotify git
+
 stow asdf
 stow bash
 stow deadbeef
@@ -10,7 +12,6 @@ stow ssh
 stow urxvt
 stow xorg
 
-sudo apt install emacs mypaint
 
 # dbeaver-ce
 # foliate

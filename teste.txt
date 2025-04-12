@@ -1,0 +1,37 @@
+apt install emacs i3 ripgrep git ffmpeg mpv xclip maim feh snapd mypaint
+
+apt-get install network-manager-l2tp-gnome network-manager-strongswan libstrongswan-standard-plugins libstrongswan-extra-plugins strongswan libcharon-extra-plugins rpcbind nfs-common nfs-kernel-server
+
+apt-get install net-tools
+
+apt install build-essential curl
+
+apt install pulseaudio pulseaudio-utils
+
+apt install virtualenv leiningen zip rlwrap 
+
+chrome
+asdf
+
+Commandline: apt install tree
+Commandline: apt install stow
+Commandline: apt install rxvt-unicode
+Commandline: apt install nvidia-driver
+Commandline: apt install emacs chromium i3 ripgrep git ffmpeg mpv xclip maim feh snapd
+Commandline: apt-get install network-manager-l2tp-gnome network-manager-strongswan libstrongswan-standard-plugins libstrongswan-extra-plugins strongswan libcharon-extra-plugins rpcbind nfs-common nfs-kernel-server
+Commandline: apt-get install net-tools
+Commandline: apt install build-essential curl git
+Commandline: apt install pulseaudio pulseaudio-utils
+Commandline: apt-get install arc-theme
+Commandline: apt install virtualenv
+Commandline: apt install clang
+Commandline: apt install build-essential curl libffi-dev libffi8 libgmp-dev libgmp10 libncurses-dev libncurses5 libtinfo5 pkg-config
+Commandline: apt install openjdk-17-jdk
+Commandline: apt install zip
+Commandline: apt install rlwrap
+Commandline: apt install leiningen
+Commandline: apt install mypaint
+Commandline: apt -f install
+Commandline: apt install -y erlang elixir
+Commandline: apt-get -y install build-essential autoconf m4 libncurses-dev libwxgtk3.2-dev libwxgtk-webview3.2-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev libssh-dev unixodbc-dev xsltproc fop libxml2-utils openjdk-17-jdk
+Commandline: apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
