@@ -1,17 +1,27 @@
+!
+
+# adicionar contrib non-free no final de todos repos
+# nano /etc/apt/sources.list
+# arrumar vsync
+# https://www.youtube.com/watch?v=OqrtvIl0Gcw
+
+
 apt install emacs i3 ripgrep git ffmpeg mpv xclip maim feh snapd mypaint
 
-apt-get install network-manager-l2tp-gnome network-manager-strongswan libstrongswan-standard-plugins libstrongswan-extra-plugins strongswan libcharon-extra-plugins rpcbind nfs-common nfs-kernel-server
+apt-get install network-manager-l2tp-gnome network-manager-strongswan libstrongswan-standard-plugins libstrongswan-extra-plugins strongswan libcharon-extra-plugins rpcbind nfs-common nfs-kernel-server net-tools
 
-apt-get install net-tools
+apt install build-essential curl pulseaudio pulseaudio-utils
 
-apt install build-essential curl
+apt install virtualenv leiningen zip rlwrap tree stow rxvt-unicode nvidia-driver
 
-apt install pulseaudio pulseaudio-utils
-
-apt install virtualenv leiningen zip rlwrap 
+apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 chrome
 asdf
+edge
+
+# configurar vpn sy
+# baixar repos
 
 Commandline: apt install tree
 Commandline: apt install stow
