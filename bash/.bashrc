@@ -140,3 +140,74 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 eval "$(atuin init bash)"
+
+ssh_oci() {
+    local ip=""
+
+    while [[ $# -gt 0 ]]; do
+    case "$1" in
+     --ip)
+        ip="$2"
+        shift
+        ;;
+     *) echo "Opção inválida: $1" ;;
+    esac
+    shift
+    done
+
+    if [[ $ip == '' ]]; then
+        echo -n "Digite o IP: "
+        read ip;
+    fi
+
+    # Realize as ações necessárias com as flags e os parâmetros
+    echo "Flag --ip: $ip"
+    
+    sudo ssh -i ~/Documents/ssh/equipe-gov synae@"$ip";
+}
+
+vncviewer_oci_oracle_linux () {
+    ip=$1
+    if [[ "$ip" == "" ]]; then
+        echo -n "Digite o IP: "
+        read ip;
+    fi
+    if [[ "$ip" =~ ^172\.19\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+        vncviewer "${ip}:5901" -PasswordFile ~/.vnc/password_prod_ol8 -RemoteResize 0 -Maximize 1 -Shared -LowColourLevel 1 > /dev/null 2>&1 &
+        PID=$!
+
+        # Loop para aguardar a criação da janela e renomear quando a janela aparecer
+        (
+            TIMEOUT=15
+            COUNTER=0
+            while true; do
+                # Procura a janela pela classe ou PID do processo
+                WINDOW_ID=$(xdotool search --pid $PID)
+                if [ -n "$WINDOW_ID" ]; then
+                    xdotool set_window --name "${ip}:5901" $WINDOW_ID
+                    break
+                fi
+                sleep 0.5 # Aguarda brevemente antes de tentar novamente
+
+                COUNTER=$((COUNTER + 1))
+                if [ $COUNTER -ge $TIMEOUT ]; then
+                    kill -9 $PID
+                    echo "Timeout: VNC Viewer não abriu conexão com ${ip}:5901."
+                    exit 1
+                fi
+            done
+        ) &
+    else
+        echo "IP $ip Inválido."
+    fi
+    
+}
+
+
+
+[[ -e "/home/paulo/lib/oracle-cli/lib/python3.11/site-packages/oci_cli/bin/oci_autocomplete.sh" ]] && source "/home/paulo/lib/oracle-cli/lib/python3.11/site-packages/oci_cli/bin/oci_autocomplete.sh"
+
+
+export PATH=/home/.local/bin:$PATH
+
+export PATH=/home/paulo/bin:$PATH

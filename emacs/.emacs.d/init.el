@@ -43,8 +43,8 @@
                            ("18:00" . gruber-darker)))
   (circadian-setup))
 
-;; (use-package whitespace
-;;   :hook (before-save . whitespace-cleanup))
+(use-package whitespace
+  :hook (before-save . whitespace-cleanup))
 
 (use-package iedit
   :ensure t)
@@ -142,14 +142,14 @@
 
 (use-package clojure-mode
   :ensure t
-  :hook
-  (clojure-mode . paredit-mode))
+  :hook ((clojure-mode . paredit-mode)))
 
-(use-package cider ;C-c C-d d shows func cursor docs
+(use-package cider
   :ensure t
   :after clojure-mode
-  :hook (((cider-repl-mode cider-mode) . eldoc-mode)
-	 (cider-popup-buffer-mode . cider-disable-linting)))
+  :hook ((clojure-mode . cider-mode)
+         (cider-repl-mode . paredit-mode))
+  )
 
 
 (defun run-eslint-on-file-in-project ()

@@ -34,3 +34,7 @@ export PATH=$PATH:$HOME/.nvm/versions/node/v22.14.0/bin
 setxkbmap -layout us -variant altgr-intl
 
 . "$HOME/.atuin/bin/env"
+
+# importante para o cider
+# export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+# export PATH=$JAVA_HOME/bin:$PATH
