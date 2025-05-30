@@ -40,7 +40,7 @@
   :ensure t
   :config
   (setq circadian-themes '(("6:00" . tsdh-light)
-                           ("18:00" . gruber-darker)))
+                           ("17:30" . gruber-darker)))
   (circadian-setup))
 
 (use-package whitespace
