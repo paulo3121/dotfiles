@@ -5,50 +5,61 @@ chmod 600 hub ime lab
 # ~/media/recordings/conversas/
 # workspace/scripts3
 
+
+# instalacao arch
+# https://youtu.be/68z11VAYMS8?si=Z4AAPpUg8lRVPb4W
+
+# pos instalacao arch
 # descomentar #Color de
 nano /etc/pacman.conf
 
 sudo pacman -S stow tree maim xclip xdotool unzip
 
+mkdir -p ~/hub/
+mkdir -p ~/workspace/
 mkdir -p ~/media/recordings/conversas/
 mkdir -p ~/media/recordings/git
 mkdir -p ~/media/recordings/raws
 mkdir -p ~/media/pics/screenshots/
 mkdir -p ~/programas/
 
+sudo pacman -S git
+git config --global user.name paulo
+git config --global user.email bisdusty@gmail.com
+
 sudo pacman -S --needed git base-devel
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 
-sudo pacman -S git
-git config --global user.name paulo
-git config --global user.email bisdusty@gmail.com
-
 git clone https://github.com/paulo3121/dotfiles.git
 
 stow i3
 stow xorg
+# https://youtu.be/sE3LHJ8lEss?si=F3QIF1SW0DjctC3T
 sudo pacman -S xorg xorg-server xorg-xinit i3 i3-wm i3lock i3status i3blocks dmenu network-manager-applet
 sudo pacman -S nvidia nvidia-utils
 sudo mkinitcpio -P
 # reboot
+startx
 nvidia-xconfig # acho que é suficiente para tirar o screen tearing
-
-yay google-chrome
-unzip Downloads/uBlock0_1.64.0.chromium.zip -d programas/
-
-stow emacs
-sudo pacman -S emacs
-
-sudo pacman -S alsa-utils alsa-firmware alsa-lib sof-firmware # acho que esta incompleto
 
 stow zsh
 sudo pacman -S zsh
 chsh -s $(which zsh)
 
+yay google-chrome
+unzip Downloads/uBlock0_1.64.0.chromium.zip -d programas/
+
+# acho que esta incompleto e som pode nao funcionar
+sudo pacman -S alsa-utils alsa-firmware alsa-lib sof-firmware
+
+stow emacs
+sudo pacman -S emacs
+
+sudo pacman -S neovim
+
 sudo pacman -S atuin
-# echo 'eval "$(atuin init zsh)"' >> ~/.zshrc #ja esta no .zshrc
 
 stow kitty
 sudo pacman -S kitty
@@ -60,54 +71,10 @@ sudo pacman -S mpv
 
 sudo pacman -S zathura zathura-pdf-mupdf zathura-cb
 
-# push albums
-
-# compatibilidade nvidia
-# kitty
-
-
-# pc antigo
-# paulo
-#!# salvar Documents/books
-#!# salvar chaves /.ssh
-#!# salvar rec/conversas novos. excluir pouco importantes
-#!# confirmar se todos os Videos/cursos_mae estao no hd
-
-
-
-# synchro
-#!# salvar workspace/scripts
-#!# salvar workspace/synpy
-
-# aur
-# yay
-# o que é e como usar
-
-# terminal
-# st, alacritty ou urxvt?
-
-# i3
-# tem mais comandos no video do cara da suica
-sudo pacman -S xorg xorg-server xorg-utils xorg-xinit xterm i3 i3-wm i3lock i3status i3blocks dmenu network-manager-applet
-sudo cp /etc/X11/xinit/xinitrc /.xinitrc
-#print screen i3
-
-
-# git
-
-
-# python
-# virtualenv?
-sudo pacman -S python-virtualenv
-
-# ffmpeg
-sudo pacman -S ffmpeg
+# sudo pacman -S ffmpeg
 # testar scripts rec
 
-# dotfiles
-
 # mpd
-
 
 # Synchro
 # vpn
