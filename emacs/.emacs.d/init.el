@@ -19,7 +19,7 @@
 (delete-selection-mode 1); replace highlighted text with what I type
 
 ;; (add-to-list 'default-frame-alist '(font . "monospace-14"))
-(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-14"))
+;; (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-14"))
 
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
@@ -115,7 +115,7 @@
   (add-to-list 'eglot-server-programs '(elixir-mode "/opt/elixir-ls/release/language_server.sh"))
   )
 
-(use-package pyvenv)
+;; (use-package pyvenv)
 
 (use-package python
   :config

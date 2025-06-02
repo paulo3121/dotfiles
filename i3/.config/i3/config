@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 10
+font pango:monospace 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -50,8 +50,8 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-# bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec i3-sensible-terminal
+# bindsym $mod+Return exec urxvt
 
 # kill focused window
 # bindsym $mod+Shift+q kill
@@ -150,7 +150,7 @@ bindsym $mod+Ctrl+6 move container to workspace number $ws6
 bindsym $mod+Ctrl+7 move container to workspace number $ws7
 bindsym $mod+Ctrl+8 move container to workspace number $ws8
 bindsym $mod+Ctrl+9 move container to workspace number $ws9
-bindsym $mod+Ctrl+0 move container to workspace number $ws10
+bindsym $mod+Ctrl+s move container to workspace number $ws10
 
 # bindsym $mod+Shift+1 move container to workspace number $ws1
 # bindsym $mod+Shift+2 move container to workspace number $ws2
@@ -200,13 +200,11 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-	status_command i3status -c /home/paulo/.config/i3/i3status.conf
+	status_command i3status -c ~/.config/i3/i3status.conf
 }
 
 
 # Paulo
-
-exec --no-startup-id setxkbmap -layout us -variant altgr-intl
 
 workspace_layout tabbed
 assign [class="Chromium"] $ws1
@@ -221,9 +219,9 @@ assign [class="Spotify"] $ws10
 assign [class="Deadbeef"] $ws10
 
 ## Screenshots
-bindsym Print exec --no-startup-id maim "/home/paulo/Pictures/Screenshots/$(date).png"
-bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/paulo/Pictures/Screenshots/$(date).png"
-bindsym Shift+Print exec --no-startup-id maim --select "/home/paulo/Pictures/Screenshots/$(date).png"
+bindsym Print exec --no-startup-id maim "~/media/pics/screenshots/$(date).png"
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "~/media/pics/screenshots/$(date).png"
+bindsym Shift+Print exec --no-startup-id maim --select "~/media/pics/screenshots/$(date).png"
 
 ## Clipboard Screenshots
 bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
