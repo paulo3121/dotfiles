@@ -131,3 +131,4 @@ rec
 usp
 hub - fazer pushs
 books
+sudo pacman -S rsync
