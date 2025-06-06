@@ -9,6 +9,8 @@ chmod 600 hub ime lab
 # instalacao arch
 # https://youtu.be/68z11VAYMS8?si=Z4AAPpUg8lRVPb4W
 
+# olhar arch install
+
 # pos instalacao arch
 # descomentar #Color de
 nano /etc/pacman.conf
@@ -112,18 +114,8 @@ sudo pacman -S intellij-idea-community-edition jdk8-openjdk gradle
 
 
 Paulo
-	chrome - ublock
 	edge
-	spotify
 	soulseek - nicotine+
-	zathura
-	yt-dlp
-	virtualenv??
-	emacs
-	dotfiles
-	terminal (alacrity, st, ...)
-	bash fish zsh
-	atuin?
 	foliate
 	asdf?
 
@@ -132,3 +124,63 @@ usp
 hub - fazer pushs
 books
 sudo pacman -S rsync
+
+
+sudo gedit /etc/hosts
+# 172.19.7.7 labgit.synchro.com.br # na linha 2 ou 3
+
+cd workspace
+git clone git@labgit.synchro.com.br:componentes/syn4tdf.git
+sudo pacman -S curl zip unzip
+sdk install java 8.0.452-tem
+sdk install gradle 5.2.1
+
+
+git clone git@labgit.synchro.com.br:componentes/syn4tdf-frontend.git
+# https://github.com/nvm-sh/nvm?tab=readme-ov-file#install--update-script # instalar nvm
+# deve automaticamente add export ... para o .zshrc
+# reabrir terminal
+
+nvm install --lts
+npm install -g yarn
+cd workspace/syn4tdf-frontend
+yarn
+
+sudo pacman -S spotify-launcher
+
+mkdir hub/yt-dlp
+cd hub/yt-dlp
+virtualenv venv
+source venv/bin/activate
+pip install yt-dlp
+
+
+yay microsoft-edge-stable-bin
+
+sudo pacman -S clojure
+sudo pacman -S rlwrap
+sudo pacman -S leiningen
+mkdir /home/paulo/.lein
+sudo pacman -S intellij-idea-community-edition
+plugin cursive
+conta intellij
+
+clonar contab
+cd contab
+salvar profiles do contab
+lein deps
+lein ring server-headless
+
+
+i3
+definir tecla melhor para trocar de aba do mesmo workspace win c?
+i3 renomear workspace 10 p S
+
+
+sudo pacman -S qbittorrent
+https://youtu.be/A2UrHzv_0rk?si=rlRJLu0a8Fc3C6kC
+https://github.com/ngosang/trackerslist
+
+wine e profit profit
+
+i3status com precos da bolsa
